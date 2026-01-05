@@ -1,8 +1,9 @@
-// 🔴 PASTE YOUR APPS SCRIPT WEB APP URL
-const API_URL = "https://script.google.com/macros/s/AKfycbxNO0kTQku15Wes_X1_Md5JbS8BrdmcKtUcfrjYpnNmwutoXOXZ8dI1WOzwLIrPenniyw/exec";
+// 🔴 PASTE YOUR WEB APP URL
+const API_URL = "https://script.google.com/macros/s/AKfycbwc9hxa8zjayFTdgWaoOryTj7rIpyptY4Smr_GoOUAJSGBz2MbLO8_dtrOFN8IDTpD9CQ/exec";
 
 function processPDFs() {
-  document.getElementById("status").innerText = "Processing...";
+  const status = document.getElementById("status");
+  status.innerText = "Processing 1 PDF...";
 
   fetch(API_URL, {
     method: "POST",
@@ -11,7 +12,10 @@ function processPDFs() {
   })
   .then(res => res.text())
   .then(msg => {
-    document.getElementById("status").innerText = msg;
+    status.innerText = msg;
+  })
+  .catch(() => {
+    status.innerText = "❌ Failed";
   });
 }
 
@@ -34,12 +38,8 @@ function scan() {
       data.scanned ? "⚠ Already Scanned" : "🆕 First Scan";
 
     const img = document.getElementById("img");
-    if (data.imageUrl) {
-      img.src = data.imageUrl;
-      img.style.display = "block";
-    } else {
-      img.style.display = "none";
-    }
+    img.style.display = data.imageUrl ? "block" : "none";
+    if (data.imageUrl) img.src = data.imageUrl;
 
     document.getElementById("popup").classList.remove("hidden");
   });
@@ -48,3 +48,4 @@ function scan() {
 function closePopup() {
   document.getElementById("popup").classList.add("hidden");
 }
+
