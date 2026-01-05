@@ -1,4 +1,4 @@
-// 🔴 PASTE YOUR WEB APP URL
+// 🔴 PASTE YOUR WEB APP URL HERE
 const API_URL = "https://script.google.com/macros/s/AKfycbwc9hxa8zjayFTdgWaoOryTj7rIpyptY4Smr_GoOUAJSGBz2MbLO8_dtrOFN8IDTpD9CQ/exec";
 
 function processPDFs() {
@@ -10,13 +10,9 @@ function processPDFs() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ action: "PROCESS_PDFS" })
   })
-  .then(res => res.text())
-  .then(msg => {
-    status.innerText = msg;
-  })
-  .catch(() => {
-    status.innerText = "❌ Failed";
-  });
+  .then(r => r.text())
+  .then(msg => status.innerText = msg)
+  .catch(() => status.innerText = "❌ Error");
 }
 
 function scan() {
@@ -28,7 +24,7 @@ function scan() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ barcode })
   })
-  .then(res => res.json())
+  .then(r => r.json())
   .then(data => {
     if (data.error) return alert("Order not found");
 
@@ -48,4 +44,3 @@ function scan() {
 function closePopup() {
   document.getElementById("popup").classList.add("hidden");
 }
-
