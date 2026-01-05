@@ -1,5 +1,5 @@
 // 🔴 PASTE YOUR WEB APP URL HERE
-const API_URL = "https://script.google.com/macros/s/AKfycbwc9hxa8zjayFTdgWaoOryTj7rIpyptY4Smr_GoOUAJSGBz2MbLO8_dtrOFN8IDTpD9CQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxqpMI3OdEIX5MHxxmd7Bn--cZKNoL5krfyp8XhlKZbN8YydFrhWpSzVCxXwzUT3vuThg/exec";
 
 function processPDFs() {
   const status = document.getElementById("status");
@@ -44,3 +44,4 @@ function scan() {
 function closePopup() {
   document.getElementById("popup").classList.add("hidden");
 }
+
